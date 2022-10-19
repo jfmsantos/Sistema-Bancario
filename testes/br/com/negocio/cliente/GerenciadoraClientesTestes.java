@@ -17,6 +17,8 @@ import br.com.negocio.IdadeNaoPermitidaException;
 
 public class GerenciadoraClientesTestes {
 
+	private static final String FABRICIOMENEZES_GMAIL_COM = "fabriciomenezes@gmail.com";
+	private static final String FABRICIO_MENEZES = "Fabrício Menezes";
 	private GerenciadoraClientes gerClientes;
 	private int idCLiente01 = 1;
 	private int idCLiente02 = 2;
@@ -27,7 +29,7 @@ public class GerenciadoraClientesTestes {
 		/* ========== Montagem do cenário ========== */
 
 		// criando alguns clientes
-		Cliente cliente01 = new Cliente(idCLiente01, "Gustavo Farias", 31, "gugafarias@gmail.com", 1, true);
+		Cliente cliente01 = new Cliente(idCLiente01, FABRICIO_MENEZES, 31, FABRICIOMENEZES_GMAIL_COM, 1, true);
 		Cliente cliente02 = new Cliente(idCLiente02, "Felipe Augusto", 34, "felipeaugusto@gmail.com", 1, true);
 
 		// inserindo os clientes criados na lista de clientes do banco
@@ -51,6 +53,7 @@ public class GerenciadoraClientesTestes {
 
 		/* ========== Verificações ========== */
 		assertThat(cliente.getId(), is(idCLiente01));
+		assertThat(cliente.getEmail(), is(FABRICIOMENEZES_GMAIL_COM));
 
 	}
 
@@ -94,7 +97,7 @@ public class GerenciadoraClientesTestes {
 	public void testClienteIdadeAceitavel() throws IdadeNaoPermitidaException {
 
 		/* ========== Montagem do Cenário ========== */
-		Cliente cliente = new Cliente(1, "Gustavo", 25, "guga@gmail.com", 1, true);
+		Cliente cliente = new Cliente(1, FABRICIO_MENEZES, 25, FABRICIOMENEZES_GMAIL_COM, 1, true);
 
 		/* ========== Execução ========== */
 		boolean idadeValida = gerClientes.validaIdade(cliente.getIdade());
@@ -104,10 +107,10 @@ public class GerenciadoraClientesTestes {
 	}
 
 	@Test
-	public void testClienteIdadeAceitavel_02() throws IdadeNaoPermitidaException {
+	public void testClienteIdadeAceitavel18() throws IdadeNaoPermitidaException {
 
 		/* ========== Montagem do Cenário ========== */
-		Cliente cliente = new Cliente(1, "Gustavo", 18, "guga@gmail.com", 1, true);
+		Cliente cliente = new Cliente(1, FABRICIO_MENEZES, 18, FABRICIOMENEZES_GMAIL_COM, 1, true);
 
 		/* ========== Execução ========== */
 		boolean idadeValida = gerClientes.validaIdade(cliente.getIdade());
@@ -117,23 +120,23 @@ public class GerenciadoraClientesTestes {
 	}
 
 	@Test
-	public void testClienteIdadeAceitavel_03() throws IdadeNaoPermitidaException {
+	public void testClienteIdadeAceitavel65() throws IdadeNaoPermitidaException {
 
 		/* ========== Montagem do Cenário ========== */
-		Cliente cliente = new Cliente(1, "Gustavo", 65, "guga@gmail.com", 1, true);
+		Cliente cliente = new Cliente(1, FABRICIO_MENEZES, 65, FABRICIOMENEZES_GMAIL_COM, 1, true);
 
 		/* ========== Execução ========== */
 		boolean idadeValida = gerClientes.validaIdade(cliente.getIdade());
 
-		/* ========== Verifica��es ========== */
+		/* ========== Verificações ========== */
 		assertTrue(idadeValida);
 	}
 
 	@Test
-	public void testClienteIdadeAceitavel_04() throws IdadeNaoPermitidaException {
+	public void testClienteIdadeAceitavel17() throws IdadeNaoPermitidaException {
 
 		/* ========== Montagem do Cenário ========== */
-		Cliente cliente = new Cliente(1, "Gustavo", 17, "guga@gmail.com", 1, true);
+		Cliente cliente = new Cliente(1, FABRICIO_MENEZES, 17, FABRICIOMENEZES_GMAIL_COM, 1, true);
 
 		/* ========== Execução ========== */
 		try {
@@ -146,10 +149,10 @@ public class GerenciadoraClientesTestes {
 	}
 
 	@Test
-	public void testClienteIdadeAceitavel_05() throws IdadeNaoPermitidaException {
+	public void testClienteIdadeAceitavel66() throws IdadeNaoPermitidaException {
 
 		/* ========== Montagem do Cenário ========== */
-		Cliente cliente = new Cliente(1, "Gustavo", 66, "guga@gmail.com", 1, true);
+		Cliente cliente = new Cliente(1, FABRICIO_MENEZES, 66, FABRICIOMENEZES_GMAIL_COM, 1, true);
 		/* ========== Execução ========== */
 		try {
 			gerClientes.validaIdade(cliente.getIdade());

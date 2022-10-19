@@ -1,41 +1,22 @@
 package br.com.negocio.conta;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import br.com.negocio.conta.ContaCorrente;
-import br.com.negocio.conta.GerenciadoraContas;
-
-/**
- * Classe de teste criada para garantir o funcionamento das principais opera��es
- * sobre contas, realizadas pela classe {@link GerenciadoraContas}.
- * 
- * @author Gustavo Farias
- * @date 21/01/2035 
- */
-public class GerenciadoraContasTest_Ex11 {
+public class GerenciadoraContasTestes {
 
 	private GerenciadoraContas gerContas;
 	
-	/**
-	 * Teste b�sico da transfer�ncia de um valor da conta de um cliente para outro,
-	 * estando ambos os clientes ativos e havendo saldo suficiente para tal transfer�ncia
-	 * ocorrer com sucesso.
-	 * 
-	 * @author Gustavo Farias
-	 * @date 21/01/2035
-	 */
 	@Test
 	public void testTransfereValor() {
 
-		/* ========== Montagem do cen�rio ========== */
+		/* ========== Montagem do cenário ========== */
 		
 		// criando alguns clientes
 		int idConta01 = 1;
@@ -50,7 +31,7 @@ public class GerenciadoraContasTest_Ex11 {
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execu��o ========== */
+		/* ========== Execução ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 100, idConta02);
 		
 		/* ========== Verifica��es ========== */
@@ -59,17 +40,10 @@ public class GerenciadoraContasTest_Ex11 {
 		assertThat(conta01.getSaldo(), is(100.0));
 	}
 	
-	/**
-	 * Teste b�sico da tentativa de transfer�ncia de um valor da conta de um cliente para outro
-	 * quando n�o h� saldo suficiente, mas o saldo � positivo.
-	 * 
-	 * @author Gustavo Farias
-	 * @date 21/01/2035
-	 */
 	@Test
 	public void testTransfereValor_SaldoInsuficiente() {
 
-		/* ========== Montagem do cen�rio ========== */
+		/* ========== Montagem do cenário ========== */
 		
 		// criando alguns clientes
 		int idConta01 = 1;
@@ -84,26 +58,19 @@ public class GerenciadoraContasTest_Ex11 {
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execu��o ========== */
+		/* ========== Execução ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 200, idConta02);
 		
-		/* ========== Verifica��es ========== */
+		/* ========== Verificações ========== */
 		assertTrue(sucesso);
 		assertThat(conta01.getSaldo(), is(-100.0));
 		assertThat(conta02.getSaldo(), is(200.0));
 	}
 
-	/**
-	 * Teste b�sico da tentativa de transfer�ncia de um valor da conta de um cliente para outro
-	 * quando n�o h� saldo suficientee o saldo � negativo.
-	 * 
-	 * @author Gustavo Farias
-	 * @date 21/01/2035
-	 */
 	@Test
-	public void testTransfereValor_SaldoNegativo() {
+	public void testTransfereValorSaldoNegativo() {
 
-		/* ========== Montagem do cen�rio ========== */
+		/* ========== Montagem do cenário ========== */
 		
 		// criando alguns clientes
 		int idConta01 = 1;
@@ -118,26 +85,19 @@ public class GerenciadoraContasTest_Ex11 {
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execu��o ========== */
+		/* ========== Execução ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 200, idConta02);
 		
-		/* ========== Verifica��es ========== */
+		/* ========== Verificações ========== */
 		assertTrue(sucesso);
 		assertThat(conta01.getSaldo(), is(-300.0));
 		assertThat(conta02.getSaldo(), is(200.0));
 	}
 	
-	/**
-	 * Teste b�sico da tentativa de transfer�ncia de um valor da conta de um cliente para outro
-	 * quando o saldo do cliente origem � negativo e do cliente destino tamb�m � negativo.
-	 * 
-	 * @author Gustavo Farias
-	 * @date 21/01/2035
-	 */
 	@Test
-	public void testTransfereValor_SaldoNegativoParaNegativo() {
+	public void testTransfereValorSaldoNegativoParaNegativo() {
 
-		/* ========== Montagem do cen�rio ========== */
+		/* ========== Montagem do cenário ========== */
 		
 		// criando alguns clientes
 		int idConta01 = 1;
@@ -152,25 +112,19 @@ public class GerenciadoraContasTest_Ex11 {
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execu��o ========== */
+		/* ========== Execução ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 200, idConta02);
 		
-		/* ========== Verifica��es ========== */
+		/* ========== Verificações ========== */
 		assertTrue(sucesso);
 		assertThat(conta01.getSaldo(), is(-300.0));
 		assertThat(conta02.getSaldo(), is(100.0));
 	}
 	
-	/**
-	 * Teste b�sico da tentativa de transfer�ncia de um valor nulo da conta de um cliente para outro.
-	 * 
-	 * @author Gustavo Farias
-	 * @date 21/01/2035
-	 */
 	@Test
-	public void testTransfereValor_Nenhum() {
+	public void testTransfereValorNenhum() {
 
-		/* ========== Montagem do cen�rio ========== */
+		/* ========== Montagem do cenário ========== */
 		
 		// criando alguns clientes
 		int idConta01 = 1;
@@ -185,14 +139,13 @@ public class GerenciadoraContasTest_Ex11 {
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execu��o ========== */
+		/* ========== Execução ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 2, idConta02);
 		
-		/* ========== Verifica��es ========== */
+		/* ========== Verificações ========== */
 		assertTrue(sucesso);
 		assertThat(conta01.getSaldo(), is(-102.0));
 		assertThat(conta02.getSaldo(), is(-98.0));
 	}
 	
 }
-// C�lculos matem�ticos e financeiros

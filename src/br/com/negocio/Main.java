@@ -3,6 +3,7 @@ package br.com.negocio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import br.com.negocio.cliente.Cliente;
 import br.com.negocio.cliente.GerenciadoraClientes;
@@ -10,6 +11,8 @@ import br.com.negocio.conta.ContaCorrente;
 import br.com.negocio.conta.GerenciadoraContas;
 
 public class Main {
+	
+	static Logger logger = Logger.getLogger(Main.class.getName());	
 
 	private static final String DIGITE_O_ID_DA_CONTA = "Digite o ID da conta: ";
 	private static final String CONTA_NAO_ENCONTRADA = "\n>>>>Conta não encontrada!";
@@ -123,7 +126,7 @@ public class Main {
 				break;
 			// Listar um cliente
 			case 5:
-				System.out.println(gerClientes.getClientesDoBanco());
+				gerClientes.getClientesDoBanco().forEach(System.out::print);
 				pulalinha();
 				break;
 			// Fazer Tranferência
@@ -277,7 +280,7 @@ public class Main {
 				break;
 			// Listar Conta
 			case 5:
-				System.out.println(gerContas.getContasDoBanco());
+				gerContas.getContasDoBanco().forEach(System.out::print);
 				pulalinha();
 				break;
 			// Sair
@@ -355,7 +358,7 @@ public class Main {
 		contasDoBanco.add(conta03);
 
 		// criando dois clientes e associando as contas criadas acima a eles
-		Cliente cliente01 = new Cliente(1, "Gustavo Farias", 31, "gugafarias@gmail.com", conta01.getId(), true);
+		Cliente cliente01 = new Cliente(1, "Fabrício Menezes", 31, "fabriciomenezes@gmail.com", conta01.getId(), true);
 		Cliente cliente02 = new Cliente(2, "Felipe Augusto", 34, "felipeaugusto@gmail.com", conta02.getId(), true);
 		Cliente cliente03 = new Cliente(3, "Alvaro Oliveira", 34, "alvaro.oliveira@gmail.com", conta03.getId(), true);
 		// inserindo os clientes criados na lista de clientes do banco
