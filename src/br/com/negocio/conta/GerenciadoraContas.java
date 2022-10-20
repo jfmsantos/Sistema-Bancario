@@ -28,10 +28,7 @@ public class GerenciadoraContas {
 
 	public boolean removeConta (int idConta) {
 		
-		return contasDoBanco.remove(contasDoBanco.stream()
-				.filter(conta -> conta.getId() == idConta)
-				.findFirst()
-				.orElse(null));
+		return contasDoBanco.removeIf(conta -> conta.getId() == idConta);
 	}
 
 	public boolean contaAtiva (int idConta) {

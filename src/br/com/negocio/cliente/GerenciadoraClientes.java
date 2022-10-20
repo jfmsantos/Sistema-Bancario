@@ -29,11 +29,7 @@ public class GerenciadoraClientes {
 	}
 
 	public boolean removeCliente (int idCliente) {
-		
-		return clientesDoBanco.remove(clientesDoBanco.stream()
-		        .filter(cliente -> cliente.getId() == idCliente)
-		        .findFirst()
-		        .orElse(null));
+		return clientesDoBanco.removeIf(cliente -> cliente.getId() == idCliente);
 	}
 
 	public boolean clienteAtivo (int idCliente) {
